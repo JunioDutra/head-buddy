@@ -58,12 +58,18 @@ O design prioriza:
 
 ## 🖥️ Tela
 
-* Tipo: SPI (pequena)
-* Medidas devem ser **obtidas manualmente**
+* Tipo: **2.42" OLED I2C** (modelo: 2.420LED-IIC VER:1.1)
+* Driver: **SSD1309**
+* Resolução: **128 × 64 pixels**
+* PCB (módulo): **61.5 × 39.5 mm**
+* Área visível do display: **55.01 × 27.49 mm**
+* Tamanho do pixel: 0.4 × 0.4 mm
+* Interface: **I2C** (4 pinos: VCC, GND, SDA, SCL)
+* Tensão: 3.3V / 5V
 * Possui:
 
   * PCB maior que área visível
-  * 4 furos de fixação
+  * 4 furos de fixação nos cantos (~M2.5)
 
 ## 🔋 Powerbank
 
@@ -188,14 +194,19 @@ Dimensões externas alvo:
 - altura: 100 mm
 - profundidade: 80 mm
 
+Abertura frontal para tela 2.42" OLED:
+- abertura: 57 x 29.5 mm (área visível 55x27.5mm + 1mm margem)
+- centralizada na frente, a 50mm de altura
+
 Requisitos:
-- frente com abertura central para a tela
+- frente com abertura central para a tela 2.42" OLED
 - moldura frontal com espessura visível de 3 a 5 mm
-- cantos levemente arredondados
-- traseira com tampa removível
+- cantos levemente arredondados (bevel 5mm, 4 segmentos)
+- traseira com tampa removível (abertura 110x90mm)
 - base estável para ficar sobre mesa
 - espaço interno suficiente para Raspberry Pi 3, tela e powerbank
-- ventilação discreta nas laterais ou na traseira
+- ventilação discreta nas laterais (5 slots por lado, 2x25mm)
+- 4 postes internos de fixação (raio 3mm, altura 5mm)
 - manter aparência de “buddy robot”, sem detalhes excessivos
 
 Importante:
@@ -265,13 +276,13 @@ Entregue a peça em escala real, pronta para encaixar no interior do robô.
 ```text
 Crie a moldura frontal interna e o suporte da tela do robô de mesa.
 
-A tela real deve ser usada como referência com as seguintes medidas medidas no componente físico:
-- largura da PCB: [LARGURA_PCB_TELA] mm
-- altura da PCB: [ALTURA_PCB_TELA] mm
-- área visível: [LARGURA_VISIVEL] mm x [ALTURA_VISIVEL] mm
-- espessura total: [ESPESSURA_TELA] mm
-- posição dos furos: [DIST_FUROS_X] mm x [DIST_FUROS_Y] mm
-- diâmetro dos furos: [DIA_FURO_TELA] mm
+Tela: 2.42" OLED I2C (SSD1309, 128x64px)
+- largura da PCB: 61.5 mm
+- altura da PCB: 39.5 mm
+- área visível: 55.01 mm x 27.49 mm
+- interface: I2C (4 pinos: VCC, GND, SDA, SCL)
+- padrão de furos: ~57.5 mm x 35.5 mm (centro a centro)
+- diâmetro dos furos: 2.7 mm (M2.5)
 
 Requisitos:
 - criar uma janela frontal alinhada exatamente com a área visível
@@ -380,9 +391,28 @@ Não existe uma única versão final — a ideia é evoluir o design conforme te
 
 ---
 
+# � Histórico de Alterações
+
+## v2 — Correção da tela (2.42" OLED I2C)
+
+As peças originais foram modeladas com dimensões de um display 3.5" SPI (PCB 86×56mm).
+Após testes de impressão, identificou-se que a tela real é um **2.42" OLED I2C** (PCB 61.5×39.5mm).
+
+Peças reconstruídas:
+- **01_shell**: abertura frontal reduzida de 70×50mm para **57×29.5mm**
+- **02_internal_chassis**: zona da tela reduzida de 15mm para **12mm** de profundidade
+- **04_screen_mount**: totalmente recriado para PCB 61.5×39.5mm, janela 56×28.5mm, furos M2.5, slot para cabo I2C, orientação flat para impressão sem suportes
+
+Dimensões confirmadas via datasheet Waveshare 2.42" OLED Module (SSD1309):
+- Módulo: 61.5 × 39.5 mm
+- Área visível: 55.01 × 27.49 mm
+- Pixel: 0.4 × 0.4 mm
+- Resolução: 128 × 64
+
+---
+
 # 💡 Próximos Passos
 
-* Adicionar display com interface visual
 * Integrar áudio (speaker + mic)
 * Criar versão com ventilação ativa
 * Evoluir design externo (personalidade do robô)
