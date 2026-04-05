@@ -1,0 +1,14 @@
+{
+	"servers": {
+		"blender": {
+			"type": "stdio",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"uvx",
+				"blender-mcp"
+			]
+		}
+	},
+	"inputs": []
+}
