@@ -1,5 +1,9 @@
 # 🤖 Desktop Buddy Robot (Raspberry Pi 3)
 
+> Nota de estado atual (2026-04-27): o README abaixo ficou como contexto historico.
+> A fonte principal do projeto atual e [AGENTS.md](AGENTS.md), e o redesign em caixa desta sessao esta em [redesign](redesign).
+> A imagem [montagem.png](montagem.png) agora reflete esse redesign novo.
+
 Projeto de um robô de mesa minimalista em formato de “cabeça”, projetado para acomodar um Raspberry Pi 3 Model B, uma tela frontal e um powerbank removível, com foco em simplicidade, modularidade e facilidade de montagem.
 
 ---

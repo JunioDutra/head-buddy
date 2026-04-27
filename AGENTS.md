@@ -4,6 +4,14 @@
 
 Robô de mesa em formato de cabeça quadrada, projetado para acomodar Raspberry Pi 3 Model B, tela OLED frontal e powerbank removível. Modelagem em Blender, impressão 3D em PLA.
 
+## Estado Atual
+
+- A fonte principal do projeto atual e este arquivo.
+- O estado corrente do hardware/casca e o redesign em caixa salvo em `redesign/box_redesign_mcp_v1.blend`.
+- A arquitetura antiga de 8 pecas virou referencia legada e nao deve ser tratada como o estado atual do produto.
+- A imagem `montagem.png` ja reflete o redesign atual.
+- A revisao de primeiro print do redesign esta em `redesign/PRINT_REVIEW_V1.md`.
+
 ## Hardware Real (confirmado)
 
 | Componente | Especificação |
@@ -14,6 +22,8 @@ Robô de mesa em formato de cabeça quadrada, projetado para acomodar Raspberry 
 | Tela pixel | 0.4 × 0.4 mm |
 | Tela interface | I2C (4 pinos: GND, VDD, SCL, SDA) |
 | Tela furos | Ovais/rasgados nos cantos — **não servem para pinos de encaixe** |
+| Camera PCB | 25.0 x 24.0 mm, espessura ~1.0 mm |
+| Camera furos | 4 furos, diametro ~2.2 mm, espacamento 21.0 x 21.0 mm, offset ~2.0 mm da borda |
 | Raspberry Pi | 3 Model B — 85 × 56 mm, furos M2.5 a 58 × 49 mm |
 | Impressora | Creality Ender 3 V3 SE |
 | Material | PLA |
@@ -43,31 +53,46 @@ Robô de mesa em formato de cabeça quadrada, projetado para acomodar Raspberry 
 
 - Peças com features finas (lips, standoffs) devem ser modeladas **flat** (base no print bed, features para cima)
 - Isso elimina necessidade de suportes e melhora a qualidade
-- Peças 03 e 04 foram refeitas flat após ficarem ruins com suportes
+- Suportes, retentores e tampas pequenas devem seguir essa regra por padrão no redesign atual
 
 ### Mesh quality
 
 - Booleans com solver `FAST` geraram peças "quebradas" no slicer
 - Sempre usar solver `EXACT` + merge doubles + recalcular normais
 
-## Peças do Projeto (8 total)
+## Arquitetura Atual (Redesign V1)
+
+- Envelope externo principal: **150 x 95 x 120 mm**
+- Shell frontal com abertura integrada da OLED e abertura da camera no canto superior esquerdo
+- Fixacao da camera integrada na shell, guiada pelas medidas reais da PCB da camera
+- Tampa traseira simples de encaixe, sem chassi interno denso
+- 3 pecas internas minimas apoiadas em ledges internos: retentor OLED, suporte Raspberry e power shelf
+- Saida lateral direita para alimentacao do Raspberry
+- Prioridade atual: montagem clara, espaco interno, passagem de fios e manutencao facil
+
+## Peças Atuais do Projeto (5 total)
 
 | # | Arquivo | Dimensões | Notas |
 |---|---|---|---|
-| 01 | `01_shell.stl` | 120×80×100mm | Abertura tela: **57×29.5mm** (para 2.42" OLED). Bevel 5mm nos cantos verticais, 5 slots ventilação/lado, 4 posts internos |
-| 02 | `02_internal_chassis.stl` | 114×74×96.5mm | Zona tela: **12mm** profundidade. Divisores, side rails, shelf RPi a 20mm, cable passages 20×12mm, screen rails a 40mm |
-| 03 | `03_raspberry_mount.stl` | 89×60×10mm | Flat. 4 standoffs M2.5 (58×49mm), base 2mm, EXACT boolean |
-| 04 | `04_screen_mount.stl` | 69.2×47.2×3mm | Flat. Pocket PCB **62.2×40.2mm** (0.7mm tolerância). Lips 1.5mm thick, laterais parciais 60%. Janela 57×29.5mm. Slot cabo I2C 18mm. 4 posts embaixo para chassis |
-| 05 | `05_powerbank_holder.stl` | 105.4×66.4×20mm | U-shaped, retention bumps, USB passage |
-| 06 | `06_back_cover.stl` | 116.2×8×98.7mm | Snap-fit clips, ventilação, M3 opcional |
-| 07 | `07_cable_guides.stl` | 90×19.5×36.5mm | U-channel, riser, clips, tabs M2.5 |
-| 08 | `08_tolerance_test.stl` | 60×40×21mm | Pinos/furos com folgas 0.2–0.5mm |
+| 01 | `rd_shell_v1.stl` | 150x95x120mm | Shell principal. Abertura OLED integrada, abertura da camera no canto superior esquerdo, posts frontais, ledges internos e saida lateral de energia |
+| 02 | `rd_back_cover_v1.stl` | 149x13x119mm | Tampa traseira com plug. Folga nominal de 0.6mm por lado e chanfro de entrada de 0.6mm |
+| 03 | `rd_oled_retainer_v1.stl` | 74x2.4x50mm | Retentor traseiro da OLED alinhado aos 4 posts frontais. Furos tratados como piloto no primeiro print |
+| 04 | `rd_rpi_support_v1.stl` | 135x68x8.5mm | Suporte simples do Raspberry apoiado em ledges internos, com area aberta para cabos |
+| 05 | `rd_power_shelf_v1.stl` | 136x68x10.5mm | Prateleira aberta para powerbank, com passagem livre de fios |
 
-## Design da Peça 04 (Screen Mount)
+## Revisao de Primeiro Print (V1)
 
-A tela 2.42" OLED encaixa por **pressão nas lips**, não por pinos nos furos (furos da PCB são ovais/rasgados). Os 4 posts cilíndricos na parte de baixo do frame servem para **fixar ao chassis interno**, não para a PCB.
+- A abertura interna traseira da shell esta em **144.0 x 114.0 mm**
+- O plug da tampa esta em **142.8 x 112.8 mm**
+- Folga nominal do plug: **0.6 mm por lado**
+- Foi adicionado um chanfro de entrada de **0.6 mm** para reduzir travamento por elephant foot
+- Se houver aperto no primeiro print, o ajuste seguinte deve ser pequeno: **+0.2 mm total no plug**
+- Na OLED e na camera, tratar os furos pequenos como **furos piloto** ate validar o comportamento real do print
 
-Slot para cabo no lip superior (onde ficam os pinos GND/VDD/SCL/SDA).
+## Referencia Legada
+
+- A arquitetura anterior de 8 pecas (shell, internal chassis, raspberry mount, screen mount, powerbank holder, back cover, cable guides e tolerance test) fica apenas como historico
+- Novas iteracoes mecanicas devem partir do redesign atual, nao do conjunto antigo
 
 ## Erros Já Cometidos (não repetir)
 
@@ -79,7 +104,11 @@ Slot para cabo no lip superior (onde ficam os pinos GND/VDD/SCL/SDA).
 
 ## Saída
 
-Todos os STLs ficam em `/stl/`. Export com `global_scale=1000.0` para gerar valores em mm no arquivo.
+- Redesign atual: STLs em `/redesign/stl/`
+- Checkpoint Blender atual: `/redesign/box_redesign_mcp_v1.blend`
+- Imagem de montagem atual: `/montagem.png`
+- Arquivos em `/stl/` sao legado de slicing/impressao anterior e nao o output principal do redesign atual
+- Export usar `global_scale=1000.0` para gerar valores em mm no arquivo
 
 ## Filosofia
 
