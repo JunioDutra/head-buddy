@@ -1,13 +1,8 @@
 {
 	"servers": {
 		"blender": {
-			"type": "stdio",
-			"command": "cmd",
-			"args": [
-				"/c",
-				"uvx",
-				"blender-mcp"
-			]
+			"type": "http",
+			"url": "http://localhost:9191",
 		}
 	},
 	"inputs": []
