@@ -64,6 +64,7 @@ O design prioriza:
 
 * Tipo: **2.42" OLED I2C** (modelo: 2.420LED-IIC VER:1.1)
 * Driver: **SSD1309**
+* Referência pública equivalente: **Waveshare 2.42inch OLED Module** para envelope e área visível, não para substituir a furação da placa real
 * Resolução: **128 × 64 pixels**
 * PCB (módulo): **61.5 × 39.5 mm**
 * Área visível do display: **55.01 × 27.49 mm**
@@ -73,7 +74,9 @@ O design prioriza:
 * Possui:
 
   * PCB maior que área visível
-  * 4 furos de fixação nos cantos (~M2.5)
+  * 4 furos circulares de fixação nos cantos da PCB real 2.420LED-IIC VER:1.1
+  * a geometria de furação deve seguir a placa real ou foto medida da própria placa
+  * não assumir pinos de encaixe como solução de montagem
 
 ## 🔋 Powerbank
 
@@ -405,9 +408,9 @@ Após testes de impressão, identificou-se que a tela real é um **2.42" OLED I2
 Peças reconstruídas:
 - **01_shell**: abertura frontal reduzida de 70×50mm para **57×29.5mm**
 - **02_internal_chassis**: zona da tela reduzida de 15mm para **12mm** de profundidade
-- **04_screen_mount**: totalmente recriado para PCB 61.5×39.5mm, janela 56×28.5mm, furos M2.5, slot para cabo I2C, orientação flat para impressão sem suportes
+- **04_screen_mount**: totalmente recriado para PCB 61.5×39.5mm, janela 56×28.5mm, slot para cabo I2C, orientação flat para impressão sem suportes. A furação final deve seguir a placa real da OLED 2.420LED-IIC VER:1.1, com **4 furos circulares de canto**
 
-Dimensões confirmadas via datasheet Waveshare 2.42" OLED Module (SSD1309):
+Dimensões confirmadas por referência pública equivalente Waveshare 2.42" OLED Module (SSD1309):
 - Módulo: 61.5 × 39.5 mm
 - Área visível: 55.01 × 27.49 mm
 - Pixel: 0.4 × 0.4 mm

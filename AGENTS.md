@@ -17,11 +17,13 @@ Robô de mesa em formato de cabeça quadrada, projetado para acomodar Raspberry 
 | Componente | Especificação |
 |---|---|
 | Tela | **2.42" OLED I2C** (modelo 2.420LED-IIC VER:1.1), SSD1309, 128×64px |
+| Tela referência pública | Waveshare **2.42inch OLED Module** (usar apenas como referência de envelope/display: SSD1309, 61.5 × 39.5 mm, área visível 55.01 × 27.49 mm) |
 | Tela PCB | 61.5 × 39.5 mm |
 | Tela área visível | 55.01 × 27.49 mm |
 | Tela pixel | 0.4 × 0.4 mm |
 | Tela interface | I2C (4 pinos: GND, VDD, SCL, SDA) |
-| Tela furos | Ovais/rasgados nos cantos — **não servem para pinos de encaixe** |
+| Tela furos reais | 4 furos circulares nos cantos da PCB da placa 2.420LED-IIC VER:1.1 |
+| Tela fixação | Não usar pinos de encaixe como premissa. Para a placa real, usar a própria PCB 2.420LED-IIC VER:1.1 como referência de furação; referência pública equivalente não deve sobrescrever a geometria real dos furos |
 | Camera PCB | 25.0 x 24.0 mm, espessura ~1.0 mm |
 | Camera furos | 4 furos, diametro ~2.2 mm, espacamento 21.0 x 21.0 mm, offset ~2.0 mm da borda |
 | Raspberry Pi | 3 Model B — 85 × 56 mm, furos M2.5 a 58 × 49 mm |
@@ -87,7 +89,8 @@ Robô de mesa em formato de cabeça quadrada, projetado para acomodar Raspberry 
 - Folga nominal do plug: **0.6 mm por lado**
 - Foi adicionado um chanfro de entrada de **0.6 mm** para reduzir travamento por elephant foot
 - Se houver aperto no primeiro print, o ajuste seguinte deve ser pequeno: **+0.2 mm total no plug**
-- Na OLED e na camera, tratar os furos pequenos como **furos piloto** ate validar o comportamento real do print
+- Na camera, tratar os furos pequenos como **furos piloto** ate validar o comportamento real do print
+- Na OLED, a referencia final de furação e a placa real **2.420LED-IIC VER:1.1** confirmada por foto, com **4 furos circulares nos cantos**
 
 ## Referencia Legada
 
